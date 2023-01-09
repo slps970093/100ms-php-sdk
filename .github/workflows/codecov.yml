@@ -1,0 +1,60 @@
+# 參考 https://docfunc.com/posts/66/%E6%AA%A2%E6%9F%A5%E8%88%87%E4%BF%AE%E6%AD%A3%E5%9C%98%E9%9A%8A%E7%9A%84-code-style%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-php-cs-fixer-post
+name: Codecov # workflow 的名稱，會在 Github Action 頁面上顯示的名稱（選擇性）
+
+permissions:
+  contents: write
+
+on: [push] # 只有在執行 git push 的時候，才會觸發並執行此 workflow
+
+jobs: # 建立一個 job
+  php-codecov: # 定義此 job 的名稱
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ ubuntu-latest ]
+        php: [ 8.0 ]
+        laravel: [ 8.* ]
+        stability: [prefer-stable]
+        include:
+          - laravel: 8.*
+            testbench: ^6.6
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        env:
+          XDEBUG_MODE: coverage
+        with:
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml
+          php_extensions: xdebug
+          args: tests --coverage-clover ./coverage.xml
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODE_COV_TOKEN }}
+          files: ./coverage.xml
+          verbose: true
+

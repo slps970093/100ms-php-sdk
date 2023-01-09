@@ -3,6 +3,8 @@
 namespace Slps970093\Live100ms;
 
 use Illuminate\Support\ServiceProvider;
+use Slps970093\Live100ms\Auth\AppToken;
+use Slps970093\Live100ms\Auth\ManagementToken;
 
 class Live100msServiceProvider extends ServiceProvider
 {
@@ -54,7 +56,23 @@ class Live100msServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton('live100ms', function () {
-            return new Live100ms;
+            return new Live100ms();
+        });
+
+        $this->app->singleton(AppToken::class, function () {
+            return new AppToken(
+                config('100ms.access_token', ""),
+                config('100ms.secret', ""),
+                config('100ms.api-version', 2),
+            );
+        });
+
+        $this->app->singleton(ManagementToken::class, function () {
+            return new ManagementToken(
+                config('100ms.access_token', ""),
+                config('100ms.secret', ""),
+                config('100ms.api-version', 2),
+            );
         });
     }
 }

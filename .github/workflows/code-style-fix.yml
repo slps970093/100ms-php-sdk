@@ -1,0 +1,29 @@
+# 參考 https://docfunc.com/posts/66/%E6%AA%A2%E6%9F%A5%E8%88%87%E4%BF%AE%E6%AD%A3%E5%9C%98%E9%9A%8A%E7%9A%84-code-style%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9-php-cs-fixer-post
+name: Check & fix styling # workflow 的名稱，會在 Github Action 頁面上顯示的名稱（選擇性）
+
+permissions:
+  contents: write
+
+on: [push] # 只有在執行 git push 的時候，才會觸發並執行此 workflow
+
+jobs: # 建立一個 job
+  php-cs-fixer: # 定義此 job 的名稱
+    runs-on: ubuntu-latest # 執行在最新版本的 ubuntu runner 上
+
+    steps: # 定義 php-cs-fixer 的執行步驟
+      - name: Checkout code # 定義步驟名稱
+        # 使用 actions/checkout@v2 這個官方的 action
+        # 可以查看 workflow 的執行狀況，並對 workflow 的虛擬環境進行指令操作（例如搭建測試環境）
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run PHP CS Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --config=.php-cs-fixer.dist.php --allow-risky=yes
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fix styling

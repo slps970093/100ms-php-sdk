@@ -1,8 +1,11 @@
 name: run-tests
 
+permissions:
+  contents: write
+  
 on:
     push:
-        branches: [master]
+        branches: [master,slps970093/develop/auth]
     pull_request:
         branches: [master]
 
@@ -41,5 +44,6 @@ jobs:
               run: |
                   composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                   composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
             - name: Execute tests
-              run: vendor/bin/phpunit
+              run: vendor/bin/phpunit --verbose
