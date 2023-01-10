@@ -20,7 +20,7 @@
         "firebase/php-jwt": "^6.3",
         "guzzlehttp/guzzle": "^7.5",
         "illuminate/support": "^8.0|^9.0",
-        "laravel/framework": "^8.*|^9.*",
+        "laravel/framework": "^8.0|^9.0",
         "nesbot/carbon": "^2.65",
         "orchestra/testbench": "^6.6",
         "symfony/property-access": "^5.4|^6.2",
