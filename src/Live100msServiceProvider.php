@@ -23,7 +23,7 @@ class Live100msServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('live100ms.php'),
+                __DIR__.'/../config/config.php' => config_path('100ms.php'),
             ], 'config');
 
             // Publishing the views.
@@ -52,7 +52,7 @@ class Live100msServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'live100ms');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', '100ms');
 
         // Register the main class to use with the facade
         $this->app->singleton('live100ms', function () {
@@ -63,7 +63,7 @@ class Live100msServiceProvider extends ServiceProvider
             return new AppToken(
                 config('100ms.access_token', ""),
                 config('100ms.secret', ""),
-                config('100ms.api-version', 2),
+                config('100ms.api-version', 2)
             );
         });
 
@@ -71,7 +71,7 @@ class Live100msServiceProvider extends ServiceProvider
             return new ManagementToken(
                 config('100ms.access_token', ""),
                 config('100ms.secret', ""),
-                config('100ms.api-version', 2),
+                config('100ms.api-version', 2)
             );
         });
     }
