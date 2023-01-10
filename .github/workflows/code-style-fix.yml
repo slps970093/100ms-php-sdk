@@ -4,7 +4,11 @@ name: Check & fix styling # workflow 的名稱，會在 Github Action 頁面上�
 permissions:
   contents: write
 
-on: [push] # 只有在執行 git push 的時候，才會觸發並執行此 workflow
+on:
+  push:
+    branches: [master,dev-baseapi]
+  pull_request:
+    branches: [master]
 
 jobs: # 建立一個 job
   php-cs-fixer: # 定義此 job 的名稱

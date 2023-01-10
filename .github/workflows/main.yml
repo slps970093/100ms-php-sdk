@@ -5,7 +5,7 @@ permissions:
   
 on:
     push:
-        branches: [master,slps970093/develop/auth]
+        branches: [master,dev-baseapi]
     pull_request:
         branches: [master]
 
