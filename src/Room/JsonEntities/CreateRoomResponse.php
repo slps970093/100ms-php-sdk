@@ -31,5 +31,4 @@ class CreateRoomResponse
     public \DateTime $createdAt;
     #[SerializedName('updated_at')]
     public \DateTime $updatedAt;
-
 }

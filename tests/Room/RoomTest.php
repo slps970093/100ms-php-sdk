@@ -81,7 +81,7 @@ class RoomTest extends TestCase
         # 比對結構
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory);
-        $serializer = new Serializer([new ObjectNormalizer($classMetadataFactory,$metadataAwareNameConverter,null, new ReflectionExtractor())], [new JsonEncoder()]);
+        $serializer = new Serializer([new ObjectNormalizer($classMetadataFactory, $metadataAwareNameConverter, null, new ReflectionExtractor())], [new JsonEncoder()]);
         $expected = $serializer->deserialize(json_encode($fakeResponse), CreateRoomResponse::class, 'json');
         $expected->createdAt = $response->createdAt;
         $expected->updatedAt = $response->updatedAt;

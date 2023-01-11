@@ -31,10 +31,10 @@ class Room
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory);
         $serializer = new Serializer(
-            [new ObjectNormalizer($classMetadataFactory,$metadataAwareNameConverter,null, new ReflectionExtractor()),],
+            [new ObjectNormalizer($classMetadataFactory, $metadataAwareNameConverter, null, new ReflectionExtractor()),],
             [new JsonEncoder()]
         );
-        $apiResult = Http::withBody($serializer->serialize($request,'json'), "application/json")
+        $apiResult = Http::withBody($serializer->serialize($request, 'json'), "application/json")
             ->withHeaders([
                 "Authorization" => "Bearer {$this->managerToken}"
             ])
