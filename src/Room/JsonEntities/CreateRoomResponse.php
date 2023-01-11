@@ -28,7 +28,7 @@ class CreateRoomResponse
     #[SerializedName('region')]
     public string $region;
     #[SerializedName('created_at')]
-    public \DateTime $createdAt;
+    public string $createdAt;
     #[SerializedName('updated_at')]
-    public \DateTime $updatedAt;
+    public string $updatedAt;
 }
