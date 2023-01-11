@@ -20,7 +20,7 @@ class CreateRoomResponse
     #[SerializedName('recording_info')]
     public RecordingInfo $recordingInfo;
     #[SerializedName('recording_source_template')]
-    public string $recordingSourceTemplate;
+    public bool $recordingSourceTemplate;
     #[SerializedName('template_id')]
     public string $templateId;
     #[SerializedName('template')]
@@ -31,4 +31,5 @@ class CreateRoomResponse
     public \DateTime $createdAt;
     #[SerializedName('updated_at')]
     public \DateTime $updatedAt;
+
 }
