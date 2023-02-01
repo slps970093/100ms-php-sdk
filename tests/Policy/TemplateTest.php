@@ -14,7 +14,6 @@ use Slps970093\Live100ms\Tests\AbstractPkgTestCase;
 
 class TemplateTest extends AbstractPkgTestCase
 {
-
     public function test_create()
     {
         $originJsonRequest = <<<JSON
@@ -309,14 +308,14 @@ JSON;
         $serializer = SerializerFactory::create();
 
         /** @var DtoTemplate $requestDto */
-        $requestDto = $serializer->deserialize($originJsonRequest,DtoTemplate::class,'json');
+        $requestDto = $serializer->deserialize($originJsonRequest, DtoTemplate::class, 'json');
 
         /** @var ManagementToken $mgrToken */
         $mgrToken = $this->app->make(ManagementToken::class);
 
-        $mgrApiToken = $mgrToken->createToken(Carbon::now(),Carbon::now()->addHours(1));
+        $mgrApiToken = $mgrToken->createToken(Carbon::now(), Carbon::now()->addHours(1));
 
-        $template = new Template($mgrApiToken,2);
+        $template = new Template($mgrApiToken, 2);
 
         $response = $template->create($requestDto);
 
@@ -328,7 +327,7 @@ JSON;
         Http::assertSentCount(1);
 
         $this->assertEquals(
-            $serializer->deserialize($expectedJsonResponse,DtoTemplateItem::class,'json'),
+            $serializer->deserialize($expectedJsonResponse, DtoTemplateItem::class, 'json'),
             $response
         );
     }
@@ -489,14 +488,14 @@ JSON;
 
         $serializer = SerializerFactory::create();
 
-        $dtoTemplate = $serializer->deserialize($expectedJsonResponse,DtoTemplate::class,'json');
+        $dtoTemplate = $serializer->deserialize($expectedJsonResponse, DtoTemplate::class, 'json');
 
         /** @var ManagementToken $mgrToken */
         $mgrToken = $this->app->make(ManagementToken::class);
 
-        $mgrApiToken = $mgrToken->createToken(Carbon::now(),Carbon::now()->addHours(1));
+        $mgrApiToken = $mgrToken->createToken(Carbon::now(), Carbon::now()->addHours(1));
 
-        $template = new Template($mgrApiToken,2);
+        $template = new Template($mgrApiToken, 2);
 
         $response = $template->update('6324661c4da877930beaecaa', $dtoTemplate);
 
@@ -508,7 +507,7 @@ JSON;
         Http::assertSentCount(1);
 
         $this->assertEquals(
-            $serializer->deserialize($expectedJsonResponse,DtoTemplateItem::class,'json'),
+            $serializer->deserialize($expectedJsonResponse, DtoTemplateItem::class, 'json'),
             $response
         );
     }
