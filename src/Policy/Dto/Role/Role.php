@@ -8,5 +8,4 @@ class Role
 {
     #[SerializedName('guest')]
     public Guest $guest;
-
 }

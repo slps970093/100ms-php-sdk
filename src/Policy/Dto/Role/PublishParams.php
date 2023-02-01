@@ -9,7 +9,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class PublishParams
 {
-
     public function __construct()
     {
         $this->screenSimulcastLayers = (object) [];
