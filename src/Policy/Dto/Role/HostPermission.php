@@ -22,5 +22,4 @@ class HostPermission
 
     #[SerializedName('sendRoomState')]
     public bool $sendRoomState = false;
-
 }

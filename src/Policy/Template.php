@@ -13,7 +13,7 @@ class Template extends AbstractManagerApi
     public function create(DtoTemplate $template)
     {
         $serializer = SerializerFactory::create();
-        $apiResult = Http::withBody($serializer->serialize($template,'json'),'application/json')
+        $apiResult = Http::withBody($serializer->serialize($template, 'json'), 'application/json')
             ->withHeaders([
                 "Authorization" => "Bearer {$this->managerToken}"
             ])
@@ -25,7 +25,7 @@ class Template extends AbstractManagerApi
     public function update($id, DtoTemplate $template)
     {
         $serializer = SerializerFactory::create();
-        $apiResult = Http::withBody($serializer->serialize($template,'json'),'application/json')
+        $apiResult = Http::withBody($serializer->serialize($template, 'json'), 'application/json')
             ->withHeaders([
                 "Authorization" => "Bearer {$this->managerToken}"
             ])
