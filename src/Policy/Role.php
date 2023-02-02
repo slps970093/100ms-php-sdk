@@ -18,9 +18,9 @@ class Role extends AbstractManagerApi
      * @param DtoRole $dtoRole
      * @return RoleItem
      */
-    public function createOrEditRole(string $templateId,string $roleName, DtoRole $dtoRole) : RoleItem
+    public function createOrEditRole(string $templateId, string $roleName, DtoRole $dtoRole): RoleItem
     {
-        $json = SerializerFactory::create()->serialize($dtoRole,'json');
+        $json = SerializerFactory::create()->serialize($dtoRole, 'json');
 
         $apiResult = Http::withBody($json, 'application/json')
             ->withHeaders([
@@ -29,7 +29,7 @@ class Role extends AbstractManagerApi
             ->post("https://api.100ms.live/v{$this->apiVersion}/templates/{$templateId}/roles/{$roleName}", []);
 
         return SerializerFactory::create()
-            ->deserialize($apiResult->body(),RoleItem::class,'json');
+            ->deserialize($apiResult->body(), RoleItem::class, 'json');
     }
 
     /**
@@ -40,7 +40,7 @@ class Role extends AbstractManagerApi
      * @param string $roleName
      * @return bool
      */
-    public function deleteRole(string $templateId,string $roleName): bool
+    public function deleteRole(string $templateId, string $roleName): bool
     {
         $apiResult = Http::withHeaders([
                 "Authorization" => "Bearer {$this->managerToken}"

@@ -139,10 +139,10 @@ JSON;
             )
         ]);
 
-        $dtoRole = SerializerFactory::create()->deserialize($requestJson,DtoRole::class,'json');
+        $dtoRole = SerializerFactory::create()->deserialize($requestJson, DtoRole::class, 'json');
 
-        $role = new Role($jwtToken,2);
-        $roleDetail = $role->createOrEditRole($templateId,$roleName,$dtoRole);
+        $role = new Role($jwtToken, 2);
+        $roleDetail = $role->createOrEditRole($templateId, $roleName, $dtoRole);
 
         Http::assertSent(function (Request $request) use ($jwtToken) {
             return $request->hasHeader('Authorization', "Bearer {$jwtToken}");
@@ -151,8 +151,8 @@ JSON;
         # 確認請求 至少送過一次
         Http::assertSentCount(1);
 
-        $expectedDto = SerializerFactory::create()->deserialize($expectedJson,RoleItem::class,'json');
-        $this->assertEquals($expectedDto,$roleDetail);
+        $expectedDto = SerializerFactory::create()->deserialize($expectedJson, RoleItem::class, 'json');
+        $this->assertEquals($expectedDto, $roleDetail);
     }
 
     public function test_deleteRole()
@@ -174,9 +174,9 @@ JSON;
             )
         ]);
 
-        $role = new Role($jwtToken,2);
+        $role = new Role($jwtToken, 2);
 
-        $this->assertTrue($role->deleteRole($templateId,$roleName));
+        $this->assertTrue($role->deleteRole($templateId, $roleName));
 
         Http::assertSent(function (Request $request) use ($jwtToken) {
             return $request->hasHeader('Authorization', "Bearer {$jwtToken}");
