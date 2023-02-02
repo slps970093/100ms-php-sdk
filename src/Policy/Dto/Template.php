@@ -7,6 +7,11 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class Template
 {
+    public function __construct()
+    {
+        $this->settings = new Setting();
+    }
+
     #[SerializedName('name')]
     public string $name;
 

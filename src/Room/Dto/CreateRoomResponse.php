@@ -2,7 +2,7 @@
 
 namespace Slps970093\Live100ms\Room\Dto;
 
-use Slps970093\Live100ms\Room\Dto\Record\RecordingInfo;
+use Slps970093\Live100ms\Destinations\Dto\Record\RecordingInfo;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class CreateRoomResponse

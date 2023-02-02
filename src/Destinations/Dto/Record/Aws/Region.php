@@ -1,6 +1,6 @@
 <?php
 
-namespace Slps970093\Live100ms\Room\Dto\Record\Aws;
+namespace Slps970093\Live100ms\Destinations\Dto\Record\Aws;
 
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
