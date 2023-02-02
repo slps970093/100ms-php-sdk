@@ -29,7 +29,7 @@ class RtmpStreamTest extends AbstractPkgTestCase
 }
 JSON;
         /** @var StartStream $dtoStartRtmpStream */
-        $dtoStartRtmpStream = SerializerFactory::create()->deserialize($requestJson, StartStream::class,'json');
+        $dtoStartRtmpStream = SerializerFactory::create()->deserialize($requestJson, StartStream::class, 'json');
 
         /** @var ManagementToken $managerToken */
         $managerToken = $this->app->make(ManagementToken::class);
@@ -38,10 +38,10 @@ JSON;
         $jwtToken = $managerToken->createToken($issuedAt, $expireAt);
 
         Http::fake([
-            "https://api.100ms.live/v2/beam" => Http::response('Beam has started successfully',200)
+            "https://api.100ms.live/v2/beam" => Http::response('Beam has started successfully', 200)
         ]);
 
-        $rtmpStream = new RtmpStream($jwtToken,2);
+        $rtmpStream = new RtmpStream($jwtToken, 2);
         $this->assertTrue($rtmpStream->startStream($dtoStartRtmpStream));
 
         Http::assertSent(function (Request $request) use ($jwtToken) {
@@ -60,7 +60,7 @@ JSON;
     "room_id": "123456"
 }
 JSON;
-        $dtoBasicStreamAction = SerializerFactory::create()->deserialize($requestJson,BasicStreamAction::class,'json');
+        $dtoBasicStreamAction = SerializerFactory::create()->deserialize($requestJson, BasicStreamAction::class, 'json');
 
         /** @var ManagementToken $managerToken */
         $managerToken = $this->app->make(ManagementToken::class);
@@ -69,10 +69,10 @@ JSON;
         $jwtToken = $managerToken->createToken($issuedAt, $expireAt);
 
         Http::fake([
-            "https://api.100ms.live/v2/beam" => Http::response('Beam has stopped successfully',200)
+            "https://api.100ms.live/v2/beam" => Http::response('Beam has stopped successfully', 200)
         ]);
 
-        $rtmpStream = new RtmpStream($jwtToken,2);
+        $rtmpStream = new RtmpStream($jwtToken, 2);
         $this->assertTrue($rtmpStream->stopStream($dtoBasicStreamAction));
 
         Http::assertSent(function (Request $request) use ($jwtToken) {

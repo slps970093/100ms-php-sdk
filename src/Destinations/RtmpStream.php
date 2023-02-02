@@ -13,7 +13,7 @@ class RtmpStream extends AbstractManagerApi
     public function startStream(StartStream $startStream): bool
     {
         $serializer = SerializerFactory::create();
-        $apiResult = Http::withBody($serializer->serialize($startStream,'json'),'application/json')
+        $apiResult = Http::withBody($serializer->serialize($startStream, 'json'), 'application/json')
             ->withHeaders([
                 "Authorization" => "Bearer {$this->managerToken}"
             ])
@@ -25,7 +25,7 @@ class RtmpStream extends AbstractManagerApi
     public function stopStream(BasicStreamAction $basicStreamAction): bool
     {
         $serializer = SerializerFactory::create();
-        $apiResult = Http::withBody($serializer->serialize($basicStreamAction,'json'),'application/json')
+        $apiResult = Http::withBody($serializer->serialize($basicStreamAction, 'json'), 'application/json')
             ->withHeaders([
                 "Authorization" => "Bearer {$this->managerToken}"
             ])
