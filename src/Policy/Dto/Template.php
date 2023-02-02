@@ -14,7 +14,7 @@ class Template
     public bool $default;
 
     #[SerializedName('roles')]
-    public Role $roles;
+    public \stdClass $roles;
 
     #[SerializedName('settings')]
     public Setting $settings;
