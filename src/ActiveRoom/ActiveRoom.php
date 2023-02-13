@@ -20,9 +20,9 @@ class ActiveRoom extends AbstractManagerApi
             ])
             ->post("https://api.100ms.live/v{$this->apiVersion}/active-rooms/{$roomId}/remove-peers");
 
-        return $serializer->deserialize($apiResult->body(),MessageResponse::class,'json');
+        return $serializer->deserialize($apiResult->body(), MessageResponse::class, 'json');
     }
-    public function endActiveRoom($roomId,EndRoomRequest $request): MessageResponse
+    public function endActiveRoom($roomId, EndRoomRequest $request): MessageResponse
     {
         $serializer = SerializerFactory::create();
         $apiResult = Http::withBody($serializer->serialize($request, 'json'), 'application/json')
@@ -31,6 +31,6 @@ class ActiveRoom extends AbstractManagerApi
             ])
             ->post("https://api.100ms.live/v{$this->apiVersion}/active-rooms/{$roomId}/end-room");
 
-        return $serializer->deserialize($apiResult->body(),MessageResponse::class,'json');
+        return $serializer->deserialize($apiResult->body(), MessageResponse::class, 'json');
     }
 }

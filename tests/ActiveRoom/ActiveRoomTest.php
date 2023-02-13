@@ -36,7 +36,7 @@ JSON;
         /** @var ManagementToken $mgrToken */
         $mgrToken = $this->app->make(ManagementToken::class);
         $jwtToken = $mgrToken->createToken(Carbon::now(), Carbon::now()->addHours(1));
-        $activeRoom = new ActiveRoom($jwtToken,2);
+        $activeRoom = new ActiveRoom($jwtToken, 2);
 
         $dtoRequest = new RemovePeerRequest();
         $response = $activeRoom->removePeer($roomId, $dtoRequest);
@@ -73,7 +73,7 @@ JSON;
         /** @var ManagementToken $mgrToken */
         $mgrToken = $this->app->make(ManagementToken::class);
         $jwtToken = $mgrToken->createToken(Carbon::now(), Carbon::now()->addHours(1));
-        $activeRoom = new ActiveRoom($jwtToken,2);
+        $activeRoom = new ActiveRoom($jwtToken, 2);
 
         $dtoRequest = new EndRoomRequest();
         $dtoRequest->lock = false;
