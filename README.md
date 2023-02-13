@@ -1,4 +1,4 @@
-# Very short description of the package
+# 100ms-php-sdk
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/slps970093/live100ms.svg?style=flat-square)](https://packagist.org/packages/slps970093/live100ms)
 [![Total Downloads](https://img.shields.io/packagist/dt/slps970093/live100ms.svg?style=flat-square)](https://packagist.org/packages/slps970093/live100ms)
